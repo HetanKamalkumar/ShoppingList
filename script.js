@@ -57,6 +57,16 @@ function createIcon(classes) {
 }
 
 function addItemToStorage(item) {
+  const itemsFromStorage = getItemsFromStorage();
+
+  //Add new item to array
+  itemsFromStorage.push(item);
+
+  //Convert to JSON string and set to local storage
+  localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+}
+
+function getItemsFromStorage() {
   let itemsFromStorage;
 
   if (localStorage.getItem('items') === null) {
@@ -65,11 +75,7 @@ function addItemToStorage(item) {
     itemsFromStorage = JSON.parse(localStorage.getItem('items'));
   }
 
-  //Add new item to array
-  itemsFromStorage.push(item);
-
-  //Convert to JSON string and set to local storage
-  localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+  return itemsFromStorage;
 }
 
 // Clear Item
